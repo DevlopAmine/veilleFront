@@ -1,0 +1,21 @@
+<!-- Large button group -->
+<div class="btn-group">
+  <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Vos Alertes  <span class="caret"></span>
+  </button>
+  <ul  #selectedPage class="dropdown-menu">
+    <li><button  class="form-control btn btn-default" *ngFor="let page of pages" (click)="onSelect(page)">
+      {{page}}</button></li>
+  </ul>
+</div>
+
+<!--<select #selectedPage class="dropdown-menu">
+  <option   *ngFor="let page of pages" [value]="page">{{ page }}</option>
+ 
+</select>
+
+<button (click)="getValueFromSelect(selectedPage.value)">click me</button>
+
+***********
+-->
+

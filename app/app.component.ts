@@ -1,29 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
 @Component({
-    selector: 'pm-app',
-    template: `
-    <div>
-        <nav class='navbar navbar-default'>
-            <div class='container-fluid'>
-          
-                <a class='navbar-brand'>{{pageTitle}}</a>
-                <ul class='nav navbar-nav'>
-                    <li><a [routerLink]="['/welcome']">Home</a></li>
-                    <li><a [routerLink]="['/products']">Product List</a></li>
-                    <li><a [routerLink]="['/mentions']">Mention List</a></li>
-                    <li><a [routerLink]="['/data']">Creer alert</a></li>
-                    <li><a [routerLink]="['/menu']">Menu</a></li>
-                </ul>
-            </div>
-        </nav>
-        <div class='container'>
-            <router-outlet></router-outlet>
-        </div>
-     </div>
-
-     `
+    selector: 'my-app',
+    templateUrl: 'app/app.component.html'
 })
-export class AppComponent {
-    pageTitle: string = 'Veille App';
+
+export class AppComponent implements OnInit{
+    location: Location;
+    
+    constructor(location:Location) {
+        this.location = location;
+    }
+    ngOnInit()
+    {
+        $.getScript('../assets/js/light-bootstrap-dashboard.js');     
+    }
+    public isMaps(path){
+        var titlee = this.location.prepareExternalUrl(this.location.path());
+        titlee = titlee.slice( 1 );
+        if(path === titlee){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 }

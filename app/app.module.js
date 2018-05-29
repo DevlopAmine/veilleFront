@@ -6,38 +6,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var http_1 = require("@angular/http");
-var router_1 = require("@angular/router");
-var app_component_1 = require("./app.component");
-var welcome_component_1 = require("./home/welcome.component");
-/* Feature Modules */
-var product_module_1 = require("./products/product.module");
-var mention_module_1 = require("./mentions/mention.module");
-var alert_module_1 = require("./alert/alert.module");
-var shared_module_1 = require("./shared/shared.module");
-var AppModule = (function () {
-    function AppModule() {
-    }
-    return AppModule;
-}());
+const core_1 = require("@angular/core");
+const platform_browser_1 = require("@angular/platform-browser");
+const router_1 = require("@angular/router");
+const app_component_1 = require("./app.component");
+const dashboard_component_1 = require("./dashboard/dashboard.component");
+const dashboard_module_1 = require("./dashboard/dashboard.module");
+const sidebar_module_1 = require("./sidebar/sidebar.module");
+const footer_module_1 = require("./shared/footer/footer.module");
+const navbar_module_1 = require("./shared/navbar/navbar.module");
+const animations_1 = require("@angular/platform-browser/animations");
+const common_1 = require("@angular/common");
+let AppModule = class AppModule {
+};
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
-            http_1.HttpModule,
-            router_1.RouterModule.forRoot([
-                { path: 'welcome', component: welcome_component_1.WelcomeComponent },
-                { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-                { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-            ]),
-            product_module_1.ProductModule, mention_module_1.MentionModule, alert_module_1.AlertModule, shared_module_1.SharedModule,
+            dashboard_module_1.DashboardModule,
+            sidebar_module_1.SidebarModule,
+            navbar_module_1.NavbarModule,
+            footer_module_1.FooterModule, animations_1.BrowserAnimationsModule,
+            router_1.RouterModule.forRoot([])
         ],
-        declarations: [
-            app_component_1.AppComponent,
-            welcome_component_1.WelcomeComponent,
-        ],
+        declarations: [app_component_1.AppComponent, dashboard_component_1.DashboardComponent],
+        providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

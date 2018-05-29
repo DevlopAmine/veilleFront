@@ -1,33 +1,29 @@
-import { NgModule } from '@angular/core';
+import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
-import { AppComponent }  from './app.component';
-import { WelcomeComponent } from './home/welcome.component';
-
-/* Feature Modules */
-import { ProductModule } from './products/product.module';
-import { MentionModule } from './mentions/mention.module';
-import { AlertModule } from './alert/alert.module';
-import {SharedModule} from './shared/shared.module';
+import { AppComponent }   from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { SidebarModule } from './sidebar/sidebar.module';
+import { FooterModule } from './shared/footer/footer.module';
+import { NavbarModule} from './shared/navbar/navbar.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    HttpModule,
-    RouterModule.forRoot([
-      { path: 'welcome', component: WelcomeComponent },
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-    ]),
-    ProductModule,MentionModule,AlertModule,SharedModule,
-  ],
-  declarations: [
-    AppComponent,
-    WelcomeComponent,
-    
-  ],
-  bootstrap: [ AppComponent ]
+    imports:      [
+        BrowserModule,
+        DashboardModule,
+        SidebarModule,
+        NavbarModule,
+        FooterModule,BrowserAnimationsModule,
+        RouterModule.forRoot([
+        ])
+    ],
+    declarations: [ AppComponent, DashboardComponent ],
+    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+    bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
